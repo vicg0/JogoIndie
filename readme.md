@@ -22,4 +22,4 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-Este projeto que mais me representa como pessoa
+Este projeto que mais me representa como pessoa 

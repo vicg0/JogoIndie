@@ -1,0 +1,121 @@
+.saveContainer {
+ width: 1000px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ gap: 8rem;
+}
+
+.save,
+.saveEmpty {
+ width: 100%;
+ height: 80px;
+ gap: 2rem;
+}
+
+.saveEmpty:hover {}
+
+.save {
+ padding: 20px 20px 0 0;
+}
+
+.borderTopSave {
+ height: 2.5px;
+ width: 100%;
+ top: 0;
+ position: absolute;
+ background-color: white;
+ -webkit-mask-image: linear-gradient(to left, black 85%, transparent);
+ border-radius: 0px;
+}
+
+.backgroundSave {
+ top: -1px;
+ width: 100%;
+ height: 100%;
+
+ position: absolute;
+ z-index: -1;
+
+ background-image: url(assets/dirtmouth.jpg);
+ background-size: 900px;
+ background-position: 0px -100px;
+ -webkit-mask-image: linear-gradient(to right, black 85%, transparent);
+}
+
+.backgroundSaveEmpty {
+ top: -1px;
+ width: 100%;
+ height: 100%;
+
+ position: absolute;
+ z-index: -1;
+ -webkit-mask-image: linear-gradient(to right, black 85%, transparent);
+
+}
+
+.saveEmpty:hover .backgroundSaveEmpty {
+ -webkit-mask-image: linear-gradient(to left, black 85%, transparent);
+ background-color: rgba(255, 255, 255, 0.08);
+}
+
+.saveEmpty:hover .backgroundSaveEmpty .borderTopSave {
+ -webkit-mask-image: linear-gradient(to right, black 85%, transparent);
+}
+
+.saveContainer .numberSave {
+ font-size: 32px;
+ font-weight: bold;
+ margin-left: 20px;
+}
+
+.saveContainer .deleteSave {
+ font-size: 24px;
+ text-wrap: nowrap;
+}
+
+.bar {
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+ z-index: 100;
+}
+
+.statusBar {
+ display: flex;
+ gap: 1rem;
+}
+
+.soulBar {
+ width: 80px;
+}
+
+.lifeBar img {
+ width: 20px;
+}
+
+.geo {
+ display: flex;
+ align-items: center;
+ gap: 10px;
+ font-size: 20px;
+}
+
+.rightSide {
+ display: flex;
+ flex-direction: column;
+ align-items: end;
+ justify-content: space-between;
+}
+
+.progressSave {
+ display: flex;
+ flex-direction: column;
+ align-items: end;
+ font-size: 16px;
+}
+
+.titleSave {}
+
+.porcentSave,
+.timeSave {}

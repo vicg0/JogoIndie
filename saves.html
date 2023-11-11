@@ -12,6 +12,7 @@
     <title>Jogos salvos</title>
     <link rel="stylesheet" href="start.css" />
     <link rel="stylesheet" href="global.css" />
+    <link rel="stylesheet" href="saves.css" />
   </head>
   <body>
     <div class="container">
@@ -20,9 +21,91 @@
         <h1>Select a Profile</h1>
 
         <div class="menu">
-          <a href="blog.html" class="saves">Iniciar Jogo</a>
-          <a href="" class="saves">Opções</a>
-          <a href="" class="saves">Sair do jogo</a>
+          <div class="saveContainer">
+            <a href="blog.html" class="save">
+              <div class="backgroundSave">
+                <div class="borderTopSave"></div>
+              </div>
+              <span class="numberSave">1.</span>
+              <div class="bar">
+                <div class="statusBar">
+                  <img
+                    class="soulBar"
+                    src="assets/charm_white_full.png"
+                    alt=""
+                  />
+
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      justify-content: center;
+                      justify-content: space-around;
+                    "
+                  >
+                    <div class="lifeBar">
+                      <img class="" src="assets/charm_white_full.png" alt="" />
+                      <img class="" src="assets/charm_white_full.png" alt="" />
+                      <img class="" src="assets/charm_white_full.png" alt="" />
+                      <img class="" src="assets/charm_white_full.png" alt="" />
+                      <img class="" src="assets/charm_white_full.png" alt="" />
+                    </div>
+
+                    <div class="geo">
+                      <img src="assets/geo.png" alt="" style="width: 30px" />
+                      <p>5700</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="rightSide">
+                  <span class="titleSave">Dirtmounth</span>
+                  <div class="progressSave">
+                    <span class="porcentSave">92%</span>
+                    <span class="timeSave">27h 19m</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <p class="deleteSave">Deletar jogo</p>
+          </div>
+
+          <div class="saveContainer">
+            <a href="blog.html" class="saveEmpty">
+              <div class="backgroundSaveEmpty">
+                <div class="borderTopSave"></div>
+              </div>
+
+              <span class="numberSave">2.</span>
+              <span>Novo Jogo</span>
+            </a>
+            <p class="deleteSave">Deletar jogo</p>
+          </div>
+
+          <div class="saveContainer">
+            <a href="blog.html" class="saveEmpty">
+              <div class="backgroundSaveEmpty">
+                <div class="borderTopSave"></div>
+              </div>
+
+              <span class="numberSave">3.</span>
+              <span>Novo Jogo</span>
+            </a>
+            <p class="deleteSave">Deletar jogo</p>
+          </div>
+
+          <div class="saveContainer">
+            <a href="blog.html" class="saveEmpty">
+              <div class="backgroundSaveEmpty">
+                <div class="borderTopSave"></div>
+              </div>
+
+              <span class="numberSave">4.</span>
+              <span>Novo Jogo</span>
+            </a>
+            <p class="deleteSave">Deletar jogo</p>
+          </div>
+
+          <a href="index.html" class="saves">Voltar</a>
         </div>
       </main>
     </div>
