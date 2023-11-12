@@ -1,20 +1,51 @@
+:root {
+  --background: #09090b;
+  --background-light: #18181b;
+  --background-dirtmounth: #111827;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   font-family: "Poppins", sans-serif;
 }
 
 body {
-  background-color: #09090b;
+  background-color: var(--background);
   overflow-x: hidden;
 }
 
 @keyframes entradaHomePage {
   from {
+    opacity: 0;
     top: 200px;
   }
 
   to {
+    opacity: 1;
     top: 0;
   }
+}
+
+@keyframes diving {
+  to {
+    left: 100%;
+  }
+}
+
+.container {
+  width: 80%;
+
+}
+
+.containerBlog {
+  position: relative;
+  height: fit-content;
+  width: 100%;
+  animation: entradaHomePage;
+  animation-duration: 3s;
 }
 
 header {
@@ -24,8 +55,6 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  animation: entradaHomePage;
-  animation-duration: 3s;
 }
 
 .navbar {
@@ -33,18 +62,45 @@ header {
   gap: 2rem;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+.area {
+  width: 100%;
+  height: 100vh;
+}
+
+.dirtmounth {
+  background-image: url('https://www.digio.com.br/blog/wp-content/uploads/2023/09/08-15-digio-blog-game-indie-1172x493px.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: -100px 0;
+  position: relative;
+}
+
+.dirtmounthContent {
+  background-color: rgba(0, 0, 0, 0.9);
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  /* background: linear-gradient(to right, rgba(0, 0, 0, 1) 15%, rgba(9, 9, 121, 0) 100%); */
+  display: flex;
+  justify-content: center;
+}
+
+.dirtmounthContent .container {
+  padding: 5rem 0;
+}
+
 footer {
-  background-color: #18181b;
+  background-color: var(--background-light);
   width: 100%;
   height: 300px;
   position: relative;
-  margin-top: 800px;
-}
-
-@keyframes diving {
-  to {
-    left: 100%;
-  }
+  margin-top: 200px;
 }
 
 footer img {
