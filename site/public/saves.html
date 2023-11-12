@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <title>Jogos salvos</title>
+    <link rel="stylesheet" href="css/start.css" />
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/saves.css" />
+  </head>
+  <body>
+    <div class="container" id="mainContainer">
+      <video src="assets/cavaleiro.mp4" autoplay muted loop></video>
+      <main>
+        <h1>Selecione um perfil</h1>
+
+        <div class="menu" id="listaSaves"></div>
+      </main>
+    </div>
+
+    <script src="js/route.js"></script>
+  </body>
+</html>
+
+<script>
+  fetch("/save/listar", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(function (response) {
+    response.json().then((json) => {
+      var qtdSaves = json.length;
+      console.log(json);
+
+      var incremento = 0;
+      for (incremento; incremento < json.length; incremento++) {
+        listaSaves.innerHTML += `<div class="saveContainer">
+             <a onclick="link('blog.html', 'mainContainer', 'fechamentoSave')" class="save">
+               <div class="backgroundSave">
+                 <div class="borderTopSave"></div>
+               </div>
+               <span class="numberSave">${incremento + 1}.</span>
+               <div class="bar">
+                 <div class="statusBar">
+                   <img
+                     class="soulBar"
+                     src="assets/charm_white_full.png"
+                     alt=""
+                   />
+
+                   <div
+                     style="
+                       display: flex;
+                       flex-direction: column;
+                       justify-content: center;
+                       justify-content: space-around;
+                     "
+                   >
+                     <div class="lifeBar">
+                       <img class="" src="assets/charm_white_full.png" alt="" />
+                       <img class="" src="assets/charm_white_full.png" alt="" />
+                       <img class="" src="assets/charm_white_full.png" alt="" />
+                       <img class="" src="assets/charm_white_full.png" alt="" />
+                       <img class="" src="assets/charm_white_full.png" alt="" />
+                     </div>
+
+                     <div class="geo">
+                       <img src="assets/geo.png" alt="" style="width: 30px" />
+                       <p>5700</p>
+                     </div>
+                   </div>
+                 </div>
+                 <div class="rightSide">
+                   <span class="titleSave">${json[incremento].location}</span>
+                   <div class="progressSave">
+                     <span class="porcentSave">${
+                       json[incremento].porcentagem
+                     }%</span>
+                     <span class="timeSave">${json[incremento].tempo}</span>
+                   </div>
+                 </div>
+               </div>
+             </a>
+             <p class="deleteSave">Deletar jogo</p>
+           </div>`;
+      }
+
+      console.log(qtdSaves);
+
+      for (incremento; incremento < 4; incremento++) {
+        listaSaves.innerHTML += `<div class="saveContainer">
+            <a href="blog.html" class="saveEmpty">
+              <div class="backgroundSaveEmpty">
+                <div class="borderTopSave"></div>
+              </div>
+
+              <span class="numberSave">${incremento + 1}.</span>
+              <span>Novo Jogo</span>
+            </a>
+            <p class="deleteSave">Deletar jogo</p>
+          </div>`;
+      }
+      listaSaves.innerHTML += `<a onclick="link('index.html')" class="saves">Voltar</a>`;
+    });
+  });
+</script>

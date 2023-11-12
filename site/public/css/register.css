@@ -1,0 +1,30 @@
+.campo {
+ display: flex;
+ flex-direction: column;
+ gap: 1rem;
+ -webkit-mask-image: linear-gradient(to right, black 85%, transparent);
+}
+
+.campo input {
+ width: 300px;
+ background-color: transparent;
+ border: none;
+ border-radius: 2px;
+ outline: none;
+ transition-duration: 1s;
+ font-size: 20px;
+}
+
+/* -webkit-mask-image: linear-gradient(to right black 85%, transparent);
+*/
+
+.borderBottomInput {
+ width: 100%;
+ height: 2px;
+ background-color: white;
+ -webkit-mask-image: linear-gradient(to left, black 85%, transparent);
+}
+
+.campo input:focus {
+ border-bottom: 0;
+}
