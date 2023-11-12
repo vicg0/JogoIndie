@@ -17,7 +17,7 @@
   <body>
     <div class="container" id="mainContainer">
       <video src="assets/cavaleiro.mp4" autoplay muted loop></video>
-      <main>
+      <main class="entradaPagina" id="mainContent">
         <h1>Selecione um perfil</h1>
 
         <div class="menu" id="listaSaves"></div>
@@ -29,6 +29,7 @@
 </html>
 
 <script>
+  var idUsuario = sessionStorage.ID_USUARIO;
   fetch("/save/listar", {
     method: "GET",
     headers: {
@@ -37,16 +38,133 @@
   }).then(function (response) {
     response.json().then((json) => {
       var qtdSaves = json.length;
-      console.log(json);
 
-      var incremento = 0;
-      for (incremento; incremento < json.length; incremento++) {
-        listaSaves.innerHTML += `<div class="saveContainer">
-             <a onclick="link('blog.html', 'mainContainer', 'fechamentoSave')" class="save">
+      var incrementoJson = 0;
+      var incremento = 1;
+
+      for (incremento; incremento <= 4; incremento++) {
+        if (json[incrementoJson] == undefined) {
+          break;
+        } else {
+          var idSave = json[incrementoJson].idSave;
+          if (idSave != incremento) {
+            listaSaves.innerHTML += `<div class="saveContainer">
+            <a onclick="registrarSave('${incremento}')" class="saveEmpty" id="${incremento}">
+              <div class="backgroundSaveEmpty">
+                <div class="borderTopSave"></div>
+              </div>
+              <span class="numberSave">${incremento}.</span>
+              <span>Novo Jogo</span>
+            </a>
+            <p onclick="deleteSave('${
+              incremento + "Delete"
+            }')" class="deleteSave" id="${
+              incremento + "Delete"
+            }">Deletar jogo</p>
+          </div>`;
+          } else {
+            listaSaves.innerHTML += `<div class="saveContainer">
+             <a onclick="link('blog.html', 'mainContainer', 'fechamentoSave')" class="save" id="${incremento}">
                <div class="backgroundSave">
                  <div class="borderTopSave"></div>
                </div>
-               <span class="numberSave">${incremento + 1}.</span>
+               <span class="numberSave">${incremento}.</span>
+               <div class="bar">
+                 <div class="statusBar">
+                   <img
+                     class="soulBar"
+                     src="assets/charm_white_full.png"
+                     alt=""
+                   />
+                   <div
+                     style="
+                       display: flex;
+                       flex-direction: column;
+                       justify-content: center;
+                       justify-content: space-around;
+                     "
+                   >
+                     <div class="lifeBar">
+                       <img class="" src="assets/charm_white_full.png" alt="" />
+                       <img class="" src="assets/charm_white_full.png" alt="" />
+                       <img class="" src="assets/charm_white_full.png" alt="" />
+                       <img class="" src="assets/charm_white_full.png" alt="" />
+                       <img class="" src="assets/charm_white_full.png" alt="" />
+                     </div>
+                     <div class="geo">
+                       <img src="assets/geo.png" alt="" style="width: 30px" />
+                       <p>5700</p>
+                     </div>
+                   </div>
+                 </div>
+                 <div class="rightSide">
+                   <span class="titleSave">${
+                     json[incrementoJson].location
+                   }</span>
+                   <div class="progressSave">
+                     <span class="porcentSave">${
+                       json[incrementoJson].porcentagem
+                     }%</span>
+                     <span class="timeSave">${json[incrementoJson].tempo}</span>
+                   </div>
+                 </div>
+               </div>
+             </a>
+             <p onclick="deleteSave('${
+               incremento + "Delete"
+             }')" class="deleteSave" id="${
+              incremento + "Delete"
+            }">Deletar jogo</p>
+           </div>`;
+            incrementoJson += 1;
+          }
+        }
+      }
+
+      for (incremento; incremento <= 4; incremento++) {
+        listaSaves.innerHTML += `<div class="saveContainer">
+            <a onclick="registrarSave('${incremento}')" class="saveEmpty" id="${incremento}">
+              <div class="backgroundSaveEmpty">
+                <div class="borderTopSave"></div>
+              </div>
+
+              <span class="numberSave">${incremento}.</span>
+              <span>Novo Jogo</span>
+            </a>
+            <p onclick="deleteSave('${
+              incremento + "Delete"
+            }')" class="deleteSave" id="${
+          incremento + "Delete"
+        }">Deletar jogo</p>
+          </div>`;
+      }
+      listaSaves.innerHTML += `<a onclick="link('start.html', 'mainContent', 'fechamentoPagina')" class="saves">Voltar</a>`;
+    });
+  });
+
+  function registrarSave(id) {
+    var campo = document.getElementById(id);
+
+    fetch("/save/registrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idSave: id,
+        idUsuario: idUsuario,
+      }),
+    }).then((response) => {
+      response.json().then((json) => {
+        campo.className = "save";
+        campo.setAttribute(
+          "onclick",
+          `link("blog.html", "mainContainer", "fechamentoSave")`
+        );
+        campo.innerHTML = `<div class="backgroundSave">
+                 <div class="borderTopSave"></div>
+               </div>
+               <span class="numberSave">${id}.</span>
                <div class="bar">
                  <div class="statusBar">
                    <img
@@ -78,36 +196,40 @@
                    </div>
                  </div>
                  <div class="rightSide">
-                   <span class="titleSave">${json[incremento].location}</span>
+                   <span class="titleSave">${json.location}</span>
                    <div class="progressSave">
-                     <span class="porcentSave">${
-                       json[incremento].porcentagem
-                     }%</span>
-                     <span class="timeSave">${json[incremento].tempo}</span>
+                     <span class="porcentSave">${json.porcentagem}%</span>
+                     <span class="timeSave">${json.tempo}</span>
                    </div>
                  </div>
-               </div>
-             </a>
-             <p class="deleteSave">Deletar jogo</p>
-           </div>`;
-      }
+               </div>`;
+      });
+    });
+  }
 
-      console.log(qtdSaves);
+  function deleteSave(idDelete) {
+    var idSave = idDelete.replace("Delete", "");
+    var campoSave = document.getElementById(idSave);
+    campoSave.setAttribute("onclick", `registrarSave('${idSave}')`);
 
-      for (incremento; incremento < 4; incremento++) {
-        listaSaves.innerHTML += `<div class="saveContainer">
-            <a href="blog.html" class="saveEmpty">
-              <div class="backgroundSaveEmpty">
+    fetch("/save/delete", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idUsuario: idUsuario,
+        idSave: idSave,
+      }),
+    }).then((response) => {
+      response.json().then((json) => {
+        campoSave.className = "saveEmpty";
+        campoSave.innerHTML = `<div class="backgroundSaveEmpty">
                 <div class="borderTopSave"></div>
               </div>
-
-              <span class="numberSave">${incremento + 1}.</span>
-              <span>Novo Jogo</span>
-            </a>
-            <p class="deleteSave">Deletar jogo</p>
-          </div>`;
-      }
-      listaSaves.innerHTML += `<a onclick="link('index.html')" class="saves">Voltar</a>`;
+              <span class="numberSave">${idSave}.</span>
+              <span>Novo Jogo</span>`;
+      });
     });
-  });
+  }
 </script>

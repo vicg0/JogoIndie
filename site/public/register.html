@@ -17,7 +17,7 @@
   <body>
     <div class="container" id="mainContainer">
       <video src="assets/cavaleiro.mp4" autoplay muted loop></video>
-      <main>
+      <main class="entradaPagina" id="mainContent">
         <h1>Cadastro</h1>
 
         <div class="menu">
@@ -43,7 +43,9 @@
             </div>
           </div>
           <a onclick="register()">Realizar cadastro</a>
-          <a onclick="link('index.html')">Login</a>
+          <a onclick="link('index.html', 'mainContent', 'fechamentoPagina')"
+            >Login</a
+          >
         </div>
       </main>
     </div>
@@ -74,7 +76,7 @@
           return false;
         } else {
           alert(json);
-          window.location.href = "index.html";
+          link("index.html", "mainContent", "fechamentoPagina");
         }
       });
     });

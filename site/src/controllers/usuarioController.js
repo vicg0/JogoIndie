@@ -17,6 +17,7 @@ function autenticar(req, res) {
                             nome: resultadoAutenticar[0].nome,
                             email: resultadoAutenticar[0].email,
                             senha: resultadoAutenticar[0].senha,
+                            message: 'Usuário cadastrado'
                         })
                     } else {
                         res.json('Existem mais de dois usuários')

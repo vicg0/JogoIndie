@@ -123,6 +123,26 @@ a:hover::after {
   }
 }
 
+@keyframes fechamentoPagina {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes entradaPagina {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 .entrada {
   position: relative;
   animation: entrada;
@@ -145,4 +165,14 @@ a:hover::after {
   position: relative;
   animation: fechamentoSave;
   animation-duration: 2.5s;
+}
+
+.fechamentoPagina {
+  animation: fechamentoPagina;
+  animation-duration: 2.1s;
+}
+
+.entradaPagina {
+  animation: entradaPagina;
+  animation-duration: 2s;
 }

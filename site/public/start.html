@@ -16,15 +16,20 @@
   <body>
     <div class="container" id="mainContainer">
       <video src="assets/cavaleiro.mp4" autoplay muted loop></video>
-      <main>
+      <main id="mainContent" class="entradaPagina">
         <img src="assets/hollow_knight_title_large_white.png" alt="" />
 
         <div class="menu">
-          <a onclick="link('saves.html')">Iniciar Jogo</a>
+          <a onclick="link('saves.html', 'mainContent', 'fechamentoPagina')"
+            >Iniciar Jogo</a
+          >
           <a onclick="link('extra.html', 'mainContainer', 'fechamento')"
             >Extra</a
           >
-          <a href="">Sair do jogo</a>
+          <a
+            onclick="clearUser(), link('index.html', 'mainContent', 'fechamentoPagina')"
+            >Sair do jogo</a
+          >
         </div>
       </main>
     </div>
@@ -32,3 +37,9 @@
     <script src="js/route.js"></script>
   </body>
 </html>
+
+<script>
+  function clearUser() {
+    sessionStorage.clear();
+  }
+</script>

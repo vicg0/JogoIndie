@@ -17,7 +17,7 @@
   <body>
     <div class="container">
       <video src="assets/cavaleiro.mp4" autoplay muted loop></video>
-      <main>
+      <main class="entradaPagina" id="mainContent">
         <h1>Login</h1>
 
         <div class="menu">
@@ -36,7 +36,9 @@
             </div>
           </div>
           <a onclick="autenticar()">Entrar</a>
-          <a href="register.html">Cadastro</a>
+          <a onclick="link('register.html', 'mainContent', 'fechamentoPagina')"
+            >Cadastro</a
+          >
         </div>
       </main>
     </div>
@@ -69,7 +71,17 @@
           }),
         }).then(function (response) {
           response.json().then((json) => {
-            window.location.href = "start.html";
+            if (json.message != "Usuário cadastrado") {
+              console.log("Algo de errado");
+            } else {
+              console.log(json);
+              alert(json.message);
+              sessionStorage.ID_USUARIO = json.id;
+              sessionStorage.NOME_USUARIO = json.nome;
+              sessionStorage.EMAIL_USUARIO = json.email;
+              sessionStorage.SENHA_USUARIO = json.senha;
+              link("start.html", "mainContent", "fechamentoPagina");
+            }
           });
         });
       }
