@@ -3,12 +3,17 @@ const router = express.Router()
 
 const saveController = require('../controllers/saveController')
 
-router.get('/listar', function (req, res) {
- saveController.listarSaves(res)
+router.post('/listar', function (req, res) {
+ saveController.listarSaves(req, res)
 })
 
 router.post('/registrar', function (req, res) {
  saveController.registrarSave(req, res)
+
+})
+
+router.post('/porcentagem', function (req, res) {
+ saveController.registrarPorcentagem(req, res)
 
 })
 

@@ -1,7 +1,7 @@
 var database = require("../database/config")
 
-function listarSaves() {
- var instrucao = `SELECT * FROM save;`
+function listarSaves(idUsuario) {
+ var instrucao = `SELECT * FROM save WHERE fkUsuario = ${idUsuario};`
 
  console.log("Executando a instrução SQL: \n" + instrucao);
 
@@ -23,6 +23,14 @@ async function registerSave(idSave, idUser) {
 
 }
 
+function registrarPorcentagem(porcentagem, idSave, fkUsuario) {
+ var instrucao = `UPDATE save set porcentagem = ${porcentagem} where idSave = ${idSave} AND fkUsuario = ${fkUsuario};`
+
+ console.log("Executando a instrução SQL: \n" + instrucao);
+
+ return database.executar(instrucao)
+}
+
 function deleteSave(idSave, idUser) {
  var instrucao = `DELETE FROM save where idSave = ${idSave} and fkUsuario = ${idUser};`
  console.log("Executando a instrução SQL: \n" + instrucao);
@@ -32,5 +40,6 @@ function deleteSave(idSave, idUser) {
 module.exports = {
  listarSaves,
  registerSave,
+ registrarPorcentagem,
  deleteSave
 }

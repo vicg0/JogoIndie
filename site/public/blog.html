@@ -47,4 +47,34 @@
     top: 0,
     behavior: "smooth",
   });
+
+  var porcentagem = 0;
+  var totalHeight = 0;
+  function registrarPorcentagem() {
+    totalHeight = document.body.scrollHeight - window.innerHeight;
+    porcentagem = (window.pageYOffset / totalHeight) * 100;
+
+    porcentagem = porcentagem.toFixed(0);
+    fetch("/save/porcentagem", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idSave: sessionStorage.ID_SAVE,
+        fkUsuario: sessionStorage.ID_USUARIO,
+        porcentagem: porcentagem,
+      }),
+    }).then(function (response) {
+      response.json(function (json) {
+        console.lo(json);
+      });
+    });
+  }
+
+  setInterval(function () {
+    window.onscroll = function () {
+      registrarPorcentagem();
+    };
+  }, 2000);
 </script>

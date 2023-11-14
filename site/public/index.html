@@ -74,7 +74,6 @@
             if (json.message != "Usuário cadastrado") {
               console.log("Algo de errado");
             } else {
-              console.log(json);
               alert(json.message);
               sessionStorage.ID_USUARIO = json.id;
               sessionStorage.NOME_USUARIO = json.nome;

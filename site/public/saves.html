@@ -25,18 +25,22 @@
     </div>
 
     <script src="js/route.js"></script>
+    <script src="js/session.js"></script>
   </body>
 </html>
 
 <script>
   var idUsuario = sessionStorage.ID_USUARIO;
   fetch("/save/listar", {
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      idUsuario: idUsuario,
+    }),
   }).then(function (response) {
-    response.json().then((json) => {
+    response.json().then(function (json) {
       var qtdSaves = json.length;
 
       var incrementoJson = 0;
@@ -64,7 +68,7 @@
           </div>`;
           } else {
             listaSaves.innerHTML += `<div class="saveContainer">
-             <a onclick="link('blog.html', 'mainContainer', 'fechamentoSave')" class="save" id="${incremento}">
+             <a onclick="link('blog.html', 'mainContainer', 'fechamentoSave'), sessionSave(${incremento})" class="save" id="${incremento}">
                <div class="backgroundSave">
                  <div class="borderTopSave"></div>
                </div>
@@ -159,8 +163,9 @@
         campo.className = "save";
         campo.setAttribute(
           "onclick",
-          `link("blog.html", "mainContainer", "fechamentoSave")`
+          `link("blog.html", "mainContainer", "fechamentoSave"), sessionSave(${json.idSave})`
         );
+
         campo.innerHTML = `<div class="backgroundSave">
                  <div class="borderTopSave"></div>
                </div>

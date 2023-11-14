@@ -1,7 +1,6 @@
 async function link(href, id, animation) {
  var campo = document.getElementById(id)
  if(campo) {
-
   campo.className = `container ${animation}`
  }
 
