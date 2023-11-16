@@ -72,7 +72,7 @@
         }).then(function (response) {
           response.json().then((json) => {
             if (json.message != "Usuário cadastrado") {
-              console.log("Algo de errado");
+              alert("Usuário não encontrado");
             } else {
               alert(json.message);
               sessionStorage.ID_USUARIO = json.id;

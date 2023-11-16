@@ -1,0 +1,29 @@
+.containerEstatistica {
+ width: 100%;
+ height: 100%;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+
+}
+
+.spaceColumns {
+ width: 100%;
+ padding: 0 3rem;
+ display: flex;
+ justify-content: space-between;
+}
+
+.columnEstatistica {
+ height: 100%;
+ width: 300px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ text-align: center;
+}
+
+.columnEstatistica p,
+.columnEstatistica span {
+ font-size: 20px;
+}
