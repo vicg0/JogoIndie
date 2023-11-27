@@ -10,10 +10,10 @@ function saveQuestionary(req, res) {
  var questionary = req.body.questionary
 
  for(var incremento = 0; incremento < questionary.length; incremento++) {
-  questionModel.saveQuestionary(questionary[incremento].fkUsuario, questionary[incremento].fkQuestion, questionary[incremento].respostaQuestion).then(resultado => {
-   res.json(resultado)
-  })
+  questionModel.saveQuestionary(questionary[incremento].fkUsuario, questionary[incremento].fkQuestion, questionary[incremento].respostaQuestion)
  }
+
+ res.json('dados inseridos')
 }
 
 module.exports = {

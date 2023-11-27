@@ -46,7 +46,27 @@ async function estatisticaPessoal(idUsuario) {
   }
 }
 
+async function estatisticaGrafico() {
+  var instrucao = `select count(fkUsuario) qtdPlayersConsole from questionary where respostaQuestion = 'Console';`;
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  var playerConsole = await database.executar(instrucao);
+
+  var instrucao = `select count(fkUsuario) qtdPlayersPc from questionary where respostaQuestion = 'PC';`;
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  var playerPc = await database.executar(instrucao);
+
+  var instrucao = `select count(fkUsuario) qtdPlayersCelular from questionary where respostaQuestion = 'Celular';`;
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  var playerCelular = await database.executar(instrucao);
+  return {
+    playerConsole: playerConsole[0].qtdPlayersConsole,
+    playerPc: playerPc[0].qtdPlayersPc,
+    playerCelular: playerCelular[0].qtdPlayersCelular
+  }
+}
+
 module.exports = {
   estatisticaGlobal,
-  estatisticaPessoal
+  estatisticaPessoal,
+  estatisticaGrafico
 };

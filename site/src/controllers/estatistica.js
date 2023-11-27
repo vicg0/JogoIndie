@@ -13,7 +13,14 @@ function estatisticaPessoal(req, res) {
  })
 }
 
+function estatisticaGrafico(res) {
+ estatisticaModel.estatisticaGrafico().then(response => {
+  res.json(response)
+ })
+}
+
 module.exports = {
  estatisticaGlobal,
- estatisticaPessoal
+ estatisticaPessoal,
+ estatisticaGrafico
 }

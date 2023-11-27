@@ -134,7 +134,6 @@
   }
 
   var tiposPerguntas = [];
-
   fetch("/question/listQuestions", {
     method: "GET",
     headers: {
@@ -193,36 +192,33 @@
   });
 
   var respostas = [];
+
   function saveQuestionary() {
+    for (var documento = 0; documento < tiposPerguntas.length; documento++) {
+      var documentName = document.getElementsByName(tiposPerguntas[documento]);
+
+      for (
+        var respostaSelecionada = 0;
+        respostaSelecionada < documentName.length;
+        respostaSelecionada++
+      ) {
+        if (documentName[respostaSelecionada].checked) {
+          var separarValue = documentName[respostaSelecionada].value.split(";");
+          var value = separarValue[0];
+          var fkQuestion = separarValue[1];
+          var objectResposta = {
+            fkUsuario: sessionStorage.ID_USUARIO,
+            respostaQuestion: value,
+            fkQuestion: fkQuestion,
+          };
+
+          respostas.push(objectResposta);
+        }
+      }
+    }
     if (respostas.length < 5) {
       alert("Insira todos os campos");
     } else {
-      for (var documento = 0; documento < tiposPerguntas.length; documento++) {
-        var documentName = document.getElementsByName(
-          tiposPerguntas[documento]
-        );
-
-        for (
-          var respostaSelecionada = 0;
-          respostaSelecionada < documentName.length;
-          respostaSelecionada++
-        ) {
-          if (documentName[respostaSelecionada].checked) {
-            var separarValue =
-              documentName[respostaSelecionada].value.split(";");
-            var value = separarValue[0];
-            var fkQuestion = separarValue[1];
-            var objectResposta = {
-              fkUsuario: sessionStorage.ID_USUARIO,
-              respostaQuestion: value,
-              fkQuestion: fkQuestion,
-            };
-
-            respostas.push(objectResposta);
-          }
-        }
-      }
-
       fetch("/question/saveQuestionary", {
         method: "post",
         headers: {

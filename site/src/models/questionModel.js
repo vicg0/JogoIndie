@@ -24,7 +24,7 @@ async function saveQuestionary(fkUsuario, fkQuestion, respostaQuestion) {
   }
   
   console.log("Executando a instrução SQL: \n" + instrucao);
-  return database.executar(instrucao)
+  return await database.executar(instrucao)
 }
 
 module.exports = {

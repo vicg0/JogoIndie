@@ -10,4 +10,8 @@ router.post('/pessoal', function (req, res) {
  estatisticaController.estatisticaPessoal(req, res)
 })
 
+router.get('/grafico', function (req, res) {
+ estatisticaController.estatisticaGrafico(res)
+})
+
 module.exports = router

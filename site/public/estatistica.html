@@ -84,14 +84,14 @@
 
   const ctx1 = document.getElementById("myChart");
 
-  new Chart(ctx1, {
+  var plataformaGrafico = new Chart(ctx1, {
     type: "bar",
     data: {
-      labels: ["Maiores de 18", "Menores de 18"],
+      labels: ["Celular", "Console", "Computador"],
       datasets: [
         {
           label: "Números de jogadores",
-          data: [300, 50],
+          data: [],
           backgroundColor: ["rgba(255, 255, 255, 0.9)", "rgba(0, 0, 0, 0.7)"],
           hoverOffset: 4,
           hoverBackgroundColor: ["rgba(255, 255, 255, 1)", "#000"],
@@ -146,6 +146,22 @@
 
       // totalPlayers.innerHTML = `<b>${json.totalPlayers}</b>`;
       // playersWithHundredPorcent.innerHTML = `<b>${json.playersWithHundredPorcent}</b>`;
+    });
+  });
+
+  fetch("/estatistica/grafico", {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((response) => {
+    response.json().then((json) => {
+      console.log(json);
+
+      plataformaGrafico.data.datasets[0].data.push(json.playerCelular);
+      plataformaGrafico.data.datasets[0].data.push(json.playerConsole);
+      plataformaGrafico.data.datasets[0].data.push(json.playerPc);
+      plataformaGrafico.update();
     });
   });
 </script>
