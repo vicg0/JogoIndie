@@ -9,7 +9,8 @@ function listarSaves(idUsuario) {
 }
 
 async function registerSave(idSave, idUser) {
-  var instrucao = `INSERT INTO save VALUES (${idSave}, ${idUser}, 'Novo Jogo', 0, '00:00:00');`;
+  var randomGeo = Number((Math.random() * 20000).toFixed(0))
+  var instrucao = `INSERT INTO save VALUES (${idSave}, ${idUser}, 'Novo Jogo', 0, '00:00:00', ${randomGeo});`;
   console.log("Executando a instrução SQL: \n" + instrucao);
 
   await database.executar(instrucao);

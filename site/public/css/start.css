@@ -54,7 +54,8 @@ main img {
   gap: 1.5rem;
 }
 
-.menu a {
+.menu a,
+.containerEstatistica a {
   font-size: 20px;
   display: flex;
   align-items: center;

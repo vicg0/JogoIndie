@@ -19,14 +19,36 @@
       <video src="assets/hornet.mp4" autoplay muted loop></video>
       <div class="containerEstatistica">
         <div class="spaceColumns">
-          <div class="columnEstatistica">
+          <div class="columnEstatistica" id="statusPessoa">
             <h1>Pessoal</h1>
+
+            <div class="campoEstatistica">
+              <p>Jogos que você teve 100%</p>
+              <span id="gamesWithHundredPorcent">0</span>
+            </div>
+            <div class="campoEstatistica">
+              <p>Total de geos coletados</p>
+              <span id="totalGeos">0</span>
+            </div>
           </div>
-          <div class="columnEstatistica">
+
+          <div class="columnEstatistica" id="statusPessoa">
+            <h1>Estatística</h1>
+            <div class="listaGraficos">
+              <canvas id="graficoMaioridade"></canvas>
+              <canvas id="myChart"></canvas>
+            </div>
+          </div>
+
+          <div class="columnEstatistica" id="statusGlobal">
             <h1>Global</h1>
             <div class="campoEstatistica">
               <p>Quantidade de jogadores</p>
-              <span>4</span>
+              <span id="totalPlayers">0</span>
+            </div>
+            <div class="campoEstatistica">
+              <p>Quantidade de jogadores que fizeram 100%</p>
+              <span id="playersWithHundredPorcent">0</span>
             </div>
           </div>
         </div>
@@ -37,5 +59,93 @@
     </div>
 
     <script src="js/route.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </body>
 </html>
+
+<script>
+  const ctx = document.getElementById("graficoMaioridade");
+
+  var graficoMaioridade = new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: ["Maiores de 18", "Menores de 18"],
+      datasets: [
+        {
+          label: "Números de jogadores",
+          backgroundColor: ["rgba(0, 0, 0, 0.7)", "rgba(255, 255, 255, 0.9)"],
+          hoverOffset: 4,
+          hoverBackgroundColor: ["#000", "rgba(255, 255, 255, 1)"],
+          color: "#FFF",
+        },
+      ],
+    },
+  });
+
+  const ctx1 = document.getElementById("myChart");
+
+  new Chart(ctx1, {
+    type: "bar",
+    data: {
+      labels: ["Maiores de 18", "Menores de 18"],
+      datasets: [
+        {
+          label: "Números de jogadores",
+          data: [300, 50],
+          backgroundColor: ["rgba(255, 255, 255, 0.9)", "rgba(0, 0, 0, 0.7)"],
+          hoverOffset: 4,
+          hoverBackgroundColor: ["rgba(255, 255, 255, 1)", "#000"],
+        },
+      ],
+      options: {
+        plugins: {
+          legend: {
+            labels: {
+              color: "#FFF",
+            },
+          },
+        },
+      },
+    },
+  });
+
+  fetch("/estatistica/global", {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((resultado) => {
+    resultado.json().then((json) => {
+      console.log(json);
+
+      totalPlayers.innerHTML = `<b>${json.totalPlayers}</b>`;
+      playersWithHundredPorcent.innerHTML = `<b>${json.playersWithHundredPorcent}</b>`;
+      graficoMaioridade.data.datasets[0].data.push(json.playersDeMaior);
+      graficoMaioridade.data.datasets[0].data.push(
+        json.totalPlayers - json.playersDeMaior
+      );
+
+      graficoMaioridade.update();
+    });
+  });
+
+  fetch("/estatistica/pessoal", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      idUsuario: sessionStorage.ID_USUARIO,
+    }),
+  }).then((resultado) => {
+    resultado.json().then((json) => {
+      console.log(json);
+
+      gamesWithHundredPorcent.innerHTML = `<b>${json.quantidadeJogosCemPorcento}</b>`;
+      totalGeos.innerHTML = `<b>${json.totalGeoColetado}</b>`;
+
+      // totalPlayers.innerHTML = `<b>${json.totalPlayers}</b>`;
+      // playersWithHundredPorcent.innerHTML = `<b>${json.playersWithHundredPorcent}</b>`;
+    });
+  });
+</script>

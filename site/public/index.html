@@ -71,7 +71,7 @@
           }),
         }).then(function (response) {
           response.json().then((json) => {
-            if (json.message != "Usuário cadastrado") {
+            if (json.message != "Login efetuado") {
               alert("Usuário não encontrado");
             } else {
               alert(json.message);
@@ -79,6 +79,7 @@
               sessionStorage.NOME_USUARIO = json.nome;
               sessionStorage.EMAIL_USUARIO = json.email;
               sessionStorage.SENHA_USUARIO = json.senha;
+              sessionStorage.SENHA_USUARIO = json.dtNasc;
               link("start.html", "mainContent", "fechamentoPagina");
             }
           });

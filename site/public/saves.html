@@ -41,6 +41,7 @@
     }),
   }).then(function (response) {
     response.json().then(function (json) {
+      // console.log(json);
       var qtdSaves = json.length;
 
       var incrementoJson = 0;
@@ -68,7 +69,7 @@
           </div>`;
           } else {
             listaSaves.innerHTML += `<div class="saveContainer">
-             <a onclick="link('blog.html', 'mainContainer', 'fechamentoSave'), sessionSave(${incremento})" class="save" id="${incremento}">
+             <a onclick="link('homepage.html', 'mainContainer', 'fechamentoSave'), sessionSave(${incremento})" class="save" id="${incremento}">
                <div class="backgroundSave">
                  <div class="borderTopSave"></div>
                </div>
@@ -97,7 +98,7 @@
                      </div>
                      <div class="geo">
                        <img src="assets/geo.png" alt="" style="width: 30px" />
-                       <p>5700</p>
+                       <p>${json[incrementoJson].geo}</p>
                      </div>
                    </div>
                  </div>
@@ -163,7 +164,7 @@
         campo.className = "save";
         campo.setAttribute(
           "onclick",
-          `link("blog.html", "mainContainer", "fechamentoSave"), sessionSave(${json.idSave})`
+          `link("homepage.html", "mainContainer", "fechamentoSave"), sessionSave(${json.idSave})`
         );
 
         campo.innerHTML = `<div class="backgroundSave">
@@ -196,7 +197,7 @@
 
                      <div class="geo">
                        <img src="assets/geo.png" alt="" style="width: 30px" />
-                       <p>5700</p>
+                       <p>${json.geo}</p>
                      </div>
                    </div>
                  </div>

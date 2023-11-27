@@ -29,23 +29,50 @@ body {
   }
 }
 
+@keyframes fechamentoHomePage {
+  from {
+    opacity: 1;
+    top: 0;
+  }
+
+  to {
+    opacity: 0;
+    top: 200px;
+  }
+}
+
 @keyframes diving {
   to {
     left: 100%;
   }
 }
 
+@keyframes goDown {
+  to {
+    top: 100%;
+  }
+}
+
+.fechamentoHomePage {
+  animation: fechamentoHomePage;
+  animation-duration: 2.1s;
+}
+
 .container {
   width: 80%;
+  display: flex;
+  flex-direction: column;
+}
 
+.entrada {
+  /* animation: entradaHomePage; */
+  animation-duration: 3s;
 }
 
 .containerBlog {
   position: relative;
   height: fit-content;
   width: 100%;
-  animation: entradaHomePage;
-  animation-duration: 3s;
 }
 
 header {
@@ -72,8 +99,8 @@ main {
   height: 100vh;
 }
 
-.dirtmounth {
-  background-image: url('https://www.digio.com.br/blog/wp-content/uploads/2023/09/08-15-digio-blog-game-indie-1172x493px.png');
+.imageBackground {
+  background-image: url("https://www.digio.com.br/blog/wp-content/uploads/2023/09/08-15-digio-blog-game-indie-1172x493px.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: -100px 0;
@@ -91,16 +118,77 @@ main {
   justify-content: center;
 }
 
-.dirtmounthContent .container {
-  padding: 5rem 0;
+.whatIsGame {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.whatIsGame .container {
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.topics {
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+}
+
+.campoTopics {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+}
+
+.campoTopicsContent {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.topics img {
+  width: 150px;
+}
+
+.historyGame {
+  display: flex;
+  justify-content: center;
+  background-color: #f4f4f5;
+}
+
+.historyGame .container {
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.historyGameContent {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.historyGameContent p,
+.historyGameContent h1 {
+  color: black;
+}
+
+.historyGame img {
+  width: 500px;
 }
 
 footer {
   background-color: var(--background-light);
   width: 100%;
-  height: 300px;
   position: relative;
   margin-top: 200px;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
 }
 
 footer img {
@@ -113,4 +201,42 @@ footer img {
   animation-duration: 7s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+}
+
+footer .container {
+  display: flex;
+  align-items: center;
+}
+
+footer .container select {
+  color: black;
+}
+
+footer .container #questionario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+footer .container .campoPergunta {
+
+  text-align: center;
+}
+
+footer .container .campoPergunta .campoRespostas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+footer .container .campoPergunta .campoRespostas .resposta {}
+
+.buttonQuestionario {
+  color: black;
+  width: max-content;
+  padding: 0.5rem 3rem;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
 }

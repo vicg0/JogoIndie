@@ -42,6 +42,13 @@
               <div class="borderBottomInput"></div>
             </div>
           </div>
+          <div class="campo">
+            <h4>data de nascimento</h4>
+            <div class="campoInput">
+              <input type="date" id="dtNasc_input" />
+              <div class="borderBottomInput"></div>
+            </div>
+          </div>
           <a onclick="register()">Realizar cadastro</a>
           <a onclick="link('index.html', 'mainContent', 'fechamentoPagina')"
             >Login</a
@@ -55,12 +62,13 @@
 </html>
 
 <script>
-  async function register() {
+  function register() {
     var nome = nome_input.value;
     var email = email_input.value;
     var senha = senha_input.value;
+    var dtNasc = dtNasc_input.value;
 
-    await fetch("/usuarios/cadastrar", {
+    fetch("/usuarios/cadastrar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -69,6 +77,7 @@
         nome: nome,
         email: email,
         senha: senha,
+        dtNasc: dtNasc,
       }),
     }).then(function (response) {
       response.json().then((json) => {

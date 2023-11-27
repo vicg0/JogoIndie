@@ -17,7 +17,8 @@ function autenticar(req, res) {
                             nome: resultadoAutenticar[0].nome,
                             email: resultadoAutenticar[0].email,
                             senha: resultadoAutenticar[0].senha,
-                            message: 'Usuário cadastrado'
+                            dtNasc: resultadoAutenticar[0].dtNasc,
+                            message: 'Login efetuado'
                         })
                     } else {
                         res.json('Existem mais de dois usuários')
@@ -39,6 +40,7 @@ function cadastrar(req, res) {
     var nome = req.body.nome;
     var email = req.body.email;
     var senha = req.body.senha;
+    var dtNasc = req.body.dtNasc;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -50,7 +52,7 @@ function cadastrar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha)
+        usuarioModel.cadastrar(nome, email, senha, dtNasc)
             .then(
                 function (resultado) {
                         res.json('Usuário cadastrado');
