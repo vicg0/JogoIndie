@@ -1,5 +1,8 @@
 create database JogoIndie;
 use JogoIndie;
+ 
+alter table questionary add column fkAnswer int;
+alter table questionary add constraint fkAnswerQuestionary foreign key (fkAnswer) references answer(idAnswer);
 
 create table usuario (
 	idUsuario int primary key auto_increment,
@@ -100,6 +103,11 @@ select * from save;
 
 select * from question;
 
+select * from answer where fkQuestion = 4;
+
+select * from questionary;
+truncate questionary;
+
 select idQuestion, doubt, an.result as respostas
 from question que
 join answer an on fkQuestion = idQuestion;
@@ -108,7 +116,10 @@ select * from answer order by fkQuestion;
 alter table answer add column grupoAnswer varchar(45);
 update answer set grupoAnswer = 'tempoComecou' where idAnswer in(1,2,3,4) and fkQuestion = 5;
 
-select * from questionary;
+select q.fkQuestion, fkAnswer, count(distinct fkUsuario) from questionary q
+right join answer a on a.idAnswer = fkAnswer
+group by fkAnswer, q.fkQuestion
+order by q.fkQuestion;
 
 select count(fkUsuario) from questionary where respostaQuestion = 'Console';
 
@@ -125,8 +136,6 @@ select sum(geo) TotalGeo from save where fkUsuario = 1;
 select count(*) QuantidadeJogos 
 from usuario usu 
 join save sa on fkUsuario = idUsuario where sa.porcentagem = 100 and usu.idUsuario = 3;
-
-
 
 select count(*) from usuario where timestampdiff(year, dtNasc, now()) < 18;
 

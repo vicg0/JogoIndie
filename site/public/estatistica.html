@@ -3,12 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
     <title>Estatística</title>
     <link rel="stylesheet" href="css/start.css" />
     <link rel="stylesheet" href="css/global.css" />
@@ -31,15 +25,6 @@
               <span id="totalGeos">0</span>
             </div>
           </div>
-
-          <div class="columnEstatistica" id="statusPessoa">
-            <h1>Estatística</h1>
-            <div class="listaGraficos">
-              <canvas id="graficoMaioridade"></canvas>
-              <canvas id="myChart"></canvas>
-            </div>
-          </div>
-
           <div class="columnEstatistica" id="statusGlobal">
             <h1>Global</h1>
             <div class="campoEstatistica">
@@ -64,51 +49,6 @@
 </html>
 
 <script>
-  const ctx = document.getElementById("graficoMaioridade");
-
-  var graficoMaioridade = new Chart(ctx, {
-    type: "doughnut",
-    data: {
-      labels: ["Maiores de 18", "Menores de 18"],
-      datasets: [
-        {
-          label: "Números de jogadores",
-          backgroundColor: ["rgba(0, 0, 0, 0.7)", "rgba(255, 255, 255, 0.9)"],
-          hoverOffset: 4,
-          hoverBackgroundColor: ["#000", "rgba(255, 255, 255, 1)"],
-          color: "#FFF",
-        },
-      ],
-    },
-  });
-
-  const ctx1 = document.getElementById("myChart");
-
-  var plataformaGrafico = new Chart(ctx1, {
-    type: "bar",
-    data: {
-      labels: ["Celular", "Console", "Computador"],
-      datasets: [
-        {
-          label: "Números de jogadores",
-          data: [],
-          backgroundColor: ["rgba(255, 255, 255, 0.9)", "rgba(0, 0, 0, 0.7)"],
-          hoverOffset: 4,
-          hoverBackgroundColor: ["rgba(255, 255, 255, 1)", "#000"],
-        },
-      ],
-      options: {
-        plugins: {
-          legend: {
-            labels: {
-              color: "#FFF",
-            },
-          },
-        },
-      },
-    },
-  });
-
   fetch("/estatistica/global", {
     method: "get",
     headers: {
@@ -146,22 +86,6 @@
 
       // totalPlayers.innerHTML = `<b>${json.totalPlayers}</b>`;
       // playersWithHundredPorcent.innerHTML = `<b>${json.playersWithHundredPorcent}</b>`;
-    });
-  });
-
-  fetch("/estatistica/grafico", {
-    method: "get",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then((response) => {
-    response.json().then((json) => {
-      console.log(json);
-
-      plataformaGrafico.data.datasets[0].data.push(json.playerCelular);
-      plataformaGrafico.data.datasets[0].data.push(json.playerConsole);
-      plataformaGrafico.data.datasets[0].data.push(json.playerPc);
-      plataformaGrafico.update();
     });
   });
 </script>

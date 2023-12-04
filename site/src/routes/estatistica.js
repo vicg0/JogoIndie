@@ -10,8 +10,24 @@ router.post('/pessoal', function (req, res) {
  estatisticaController.estatisticaPessoal(req, res)
 })
 
-router.get('/grafico', function (req, res) {
- estatisticaController.estatisticaGrafico(res)
+router.get('/graficoPlataforma', function (req, res) {
+ estatisticaController.estatisticaPlataformaGrafico(res)
+})
+
+router.get('/graficoEstilo', function (req, res) {
+ estatisticaController.estatisticaEstiloGrafico(res)
+})
+
+router.get('/graficoHoras', function (req, res) {
+ estatisticaController.estatisticaHorasGrafico(res)
+})
+
+router.get('/graficoFavorito', function (req, res) {
+ estatisticaController.estatisticaFavoritoGrafico(res)
+})
+
+router.get('/graficoPeriodo', function (req, res) {
+ estatisticaController.estatisticaPeriodoGrafico(res)
 })
 
 module.exports = router

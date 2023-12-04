@@ -13,8 +13,32 @@ function estatisticaPessoal(req, res) {
  })
 }
 
-function estatisticaGrafico(res) {
- estatisticaModel.estatisticaGrafico().then(response => {
+function estatisticaPlataformaGrafico(res) {
+ estatisticaModel.estatisticaPlataformaGrafico().then(response => {
+  res.json(response)
+ })
+}
+
+function estatisticaEstiloGrafico(res) {
+ estatisticaModel.estatisticaEstiloGrafico().then(response => {
+  res.json(response)
+ })
+}
+
+function estatisticaHorasGrafico(res) {
+ estatisticaModel.estatisticaHorasGrafico().then(response => {
+  res.json(response)
+ })
+}
+
+function estatisticaFavoritoGrafico(res) {
+ estatisticaModel.estatisticaFavoritoGrafico().then(response => {
+  res.json(response)
+ })
+}
+
+function estatisticaPeriodoGrafico(res) {
+ estatisticaModel.estatisticaPeriodoGrafico().then(response => {
   res.json(response)
  })
 }
@@ -22,5 +46,9 @@ function estatisticaGrafico(res) {
 module.exports = {
  estatisticaGlobal,
  estatisticaPessoal,
- estatisticaGrafico
+ estatisticaPlataformaGrafico,
+ estatisticaEstiloGrafico,
+ estatisticaHorasGrafico,
+ estatisticaFavoritoGrafico,
+ estatisticaPeriodoGrafico
 }

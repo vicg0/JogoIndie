@@ -65,7 +65,7 @@ body {
 }
 
 .entrada {
-  /* animation: entradaHomePage; */
+  animation: entradaHomePage;
   animation-duration: 3s;
 }
 
@@ -164,6 +164,7 @@ main {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  gap: 3rem;
 }
 
 .historyGameContent {
@@ -172,13 +173,54 @@ main {
   gap: 3rem;
 }
 
-.historyGameContent p,
+.historyGameContent ul li,
 .historyGameContent h1 {
   color: black;
 }
 
 .historyGame img {
   width: 500px;
+}
+
+.hollowKnight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  margin-top: 100px;
+}
+
+.hollowKnight video {
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+.hollowKnight .container {
+  align-items: end;
+}
+
+.hollowKnight .container .contentHollow {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.gris {
+  background-image: url("../assets/backgroundGris.png");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gris .container .contentGris {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 footer {
@@ -220,7 +262,6 @@ footer .container #questionario {
 }
 
 footer .container .campoPergunta {
-
   text-align: center;
 }
 
@@ -230,7 +271,8 @@ footer .container .campoPergunta .campoRespostas {
   align-items: center;
 }
 
-footer .container .campoPergunta .campoRespostas .resposta {}
+footer .container .campoPergunta .campoRespostas .resposta {
+}
 
 .buttonQuestionario {
   color: black;
@@ -239,4 +281,36 @@ footer .container .campoPergunta .campoRespostas .resposta {}
   border-radius: 5px;
   cursor: pointer;
   border: none;
+}
+
+.spaceColumns {
+  padding: 0 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+  /* justify-content: space-around; */
+}
+
+.columnEstatistica {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+}
+
+.columnEstatistica p,
+.columnEstatistica span {
+  font-size: 20px;
+}
+
+.listaGraficos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+canvas {
+  color: white;
 }
